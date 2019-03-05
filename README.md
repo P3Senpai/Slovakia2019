@@ -33,7 +33,7 @@ The Javadoc reference documentation for the FTC SDK is now available online.  Vi
 
 Documentation for the FTC SDK is also included with this repository.  There is a subfolder called "doc" which contains several subfolders:
 
- * The folder "apk" contains the .apk files for the FTC Driver Station and FTC Robot Controller apps.
+ * The folder "apk" contains the .apk files for the FTC Driver Station and FTC org.firstinspires.ftc.teamcode.Robot Controller apps.
  * The folder "javadoc" contains the JavaDoc user documentation for the FTC SDK.
 
 ### Online User Forum
@@ -54,11 +54,11 @@ Version 4.3 (built on 18.10.31)
 
 Version 4.2 (built on 18.10.30)
  * Includes fix to avoid deadlock situation with WatchdogMonitor which could result in USB communication errors.
-     - Comm error appeared to require that user disconnect USB cable and restart the Robot Controller app to recover.
+     - Comm error appeared to require that user disconnect USB cable and restart the org.firstinspires.ftc.teamcode.Robot Controller app to recover.
      - robotControllerLog.txt would have error messages that included the words "E RobotCore: lynx xmit lock: #### abandoning lock:"
  * Includes fix to correctly list the parent module address for a REV Robotics Expansion Hub in a configuration (.xml) file.
      - Bug in versions 4.0 and 4.1 would incorrect list the address module for a parent REV Robotics device as "1".
-     - If the parent module had a higher address value than the daisy-chained module, then this bug would prevent the Robot Controller from communicating with the downstream Expansion Hub.
+     - If the parent module had a higher address value than the daisy-chained module, then this bug would prevent the org.firstinspires.ftc.teamcode.Robot Controller from communicating with the downstream Expansion Hub.
  * Added requirement for ACCESS_COARSE_LOCATION to allow a Driver Station running Android Oreo to scan for Wi-Fi Direct devices.
  * Added google() repo to build.gradle because aapt2 must be downloaded from the google() repository beginning with version 3.2 of the Android Gradle Plugin.
      - Important Note: Android Studio users will need to be connected to the Internet the first time build the ftc_app project.
@@ -83,7 +83,7 @@ Version 4.1 (released on 18.09.24)
 
 Changes include:
  * Fix to prevent crash when deprecated configuration annotations are used.
- * Change to allow FTC Robot Controller APK to be auto-updated using FIRST Global Control Hub update scripts.
+ * Change to allow FTC org.firstinspires.ftc.teamcode.Robot Controller APK to be auto-updated using FIRST Global Control Hub update scripts.
  * Removed samples for non supported / non legal hardware.
  * Improvements to Telemetry.addData block with "text" socket.
  * Updated Blocks sample op mode list to include Rover Ruckus Vuforia example.
@@ -103,8 +103,8 @@ Changes include:
     - User can upload calibration files from Program and Manage web interface.
     - UVC cameras seem to draw a fair amount of electrical current from the USB bus.
          + This does not appear to present any problems for the REV Robotics Control Hub.
-	 + This does seem to create stability problems when using some cameras with an Android phone-based Robot Controller.
-	 + FTC Tech Team is investigating options to mitigate this issue with the phone-based Robot Controllers.
+	 + This does seem to create stability problems when using some cameras with an Android phone-based org.firstinspires.ftc.teamcode.Robot Controller.
+	 + FTC Tech Team is investigating options to mitigate this issue with the phone-based org.firstinspires.ftc.teamcode.Robot Controllers.
     - Updated sample Vuforia Navigation and VuMark Op Modes to demonstrate how to use an internal phone-based camera and an external UVC webcam.    
 
  * Support for improved motor control.
@@ -119,20 +119,20 @@ Changes include:
         + Tested with Moto G5 and E4 phones.
 	+ Also tested with other (currently non-approved) phones such as Samsung Galaxy S8.
 
-* Improved Expansion Hub firmware update support in Robot Controller app
-    - Changes to make the system more robust during the firmware update process (when performed through Robot Controller app).
+* Improved Expansion Hub firmware update support in org.firstinspires.ftc.teamcode.Robot Controller app
+    - Changes to make the system more robust during the firmware update process (when performed through org.firstinspires.ftc.teamcode.Robot Controller app).
     - User no longer has to disconnect a downstream daisy-chained Expansion Hub when updating an Expansion Hub's firmware.
         + If user is updating an Expansion Hub's firmware through a USB connection, he/she does not have to disconnect RS485 connection to other Expansion Hubs.
 	+ The user still must use a USB connection to update an Expansion Hub's firmware.
 	+ The user cannot update the Expansion Hub firmware for a downstream device that is daisy chained through an RS485 connection.
-    - If an Expansion Hub accidentally gets "bricked" the Robot Controller app is now more likely to recognize the Hub when it scans the USB bus.
-        + Robot Controller app should be able to detect an Expansion Hub, even if it accidentally was bricked in a previous update attempt.
-	+ Robot Controller app should be able to install the firmware onto the Hub, even if if accidentally was bricked in a previous update attempt.
+    - If an Expansion Hub accidentally gets "bricked" the org.firstinspires.ftc.teamcode.Robot Controller app is now more likely to recognize the Hub when it scans the USB bus.
+        + org.firstinspires.ftc.teamcode.Robot Controller app should be able to detect an Expansion Hub, even if it accidentally was bricked in a previous update attempt.
+	+ org.firstinspires.ftc.teamcode.Robot Controller app should be able to install the firmware onto the Hub, even if if accidentally was bricked in a previous update attempt.
  
  * Resiliency
     - FTC software can detect and enable an FTDI reset feature that is available with REV Robotics v1.8 Expansion Hub firmware and greater.
-        + When enabled, the Expansion Hub can detect if it hasn't communicated with the Robot Controller over the FTDI (USB) connection.
-	+ If the Hub hasn't heard from the Robot Controller in a while, it will reset the FTDI connection.
+        + When enabled, the Expansion Hub can detect if it hasn't communicated with the org.firstinspires.ftc.teamcode.Robot Controller over the FTDI (USB) connection.
+	+ If the Hub hasn't heard from the org.firstinspires.ftc.teamcode.Robot Controller in a while, it will reset the FTDI connection.
 	+ This action helps system recover from some ESD-induced disruptions.
     - Various fixes to improve reliability of FTC software.
      
@@ -142,7 +142,7 @@ Changes include:
     - Refactored optimized Blocks Vuforia code to support Rover Ruckus image targets.
     - Added programming blocks to support PIDF (proportional, integral, derivative and feed forward) motor control.
     - Added formatting options (under Telemetry and Miscellaneous categories) so user can set how many decimal places to display a numerical value.
-    - Support to play audio files (which are uploaded through Blocks web interface) on Driver Station in addition to the Robot Controller.
+    - Support to play audio files (which are uploaded through Blocks web interface) on Driver Station in addition to the org.firstinspires.ftc.teamcode.Robot Controller.
     - Fixed bug with Download Image of Blocks feature.
     - Support for REV Robotics Blinkin LED Controller.
     - Support for REV Robotics 2m Distance Sensor.
@@ -159,7 +159,7 @@ Changes include:
         + Under "Settings" a user can enable/disable this feature (it's disabled by default).
 	+ If enabled, user provides a "Match Number" through the Driver Station user interface (top of the screen).
 	    * The Match Number is used to create a log file specifically with log statements from that particular Op Mode run.
-	    * Match log files are stored in /sdcard/FIRST/matlogs on the Robot Controller.
+	    * Match log files are stored in /sdcard/FIRST/matlogs on the org.firstinspires.ftc.teamcode.Robot Controller.
 	    * Once an op mode run is complete, the Match Number is cleared.
 	    * This is a convenient way to create a separate match log with statements only related to a specific op mode run.
  
@@ -183,9 +183,9 @@ Known issues:
  * Initial support for UVC compatible cameras
     - UVC cameras seem to draw significant amount of current from the USB bus.
         + This does not appear to present any problems for the REV Robotics Control Hub.
-	+ This does seem to create stability problems when using some cameras with an Android phone-based Robot Controller.
-	+ FTC Tech Team is investigating options to mitigate this issue with the phone-based Robot Controllers.
-    - There might be a possible deadlock which causes the RC to become unresponsive when using a UVC webcam with a Nougat Android Robot Controller.
+	+ This does seem to create stability problems when using some cameras with an Android phone-based org.firstinspires.ftc.teamcode.Robot Controller.
+	+ FTC Tech Team is investigating options to mitigate this issue with the phone-based org.firstinspires.ftc.teamcode.Robot Controllers.
+    - There might be a possible deadlock which causes the RC to become unresponsive when using a UVC webcam with a Nougat Android org.firstinspires.ftc.teamcode.Robot Controller.
 
  * Wireless
     - When user selects a wireless channel, this channel does not necessarily persist if the phone is power cycled.
@@ -221,15 +221,15 @@ Changes include:
 Version 3.5 (built on 17.10.30)
 
 Changes with version 3.5 include:
- * Introduced a fix to prevent random op mode stops, which can occur after the Robot Controller app has been paused and then resumed (for example, when a user temporarily turns off the display of the Robot Controller phone, and then turns the screen back on).
+ * Introduced a fix to prevent random op mode stops, which can occur after the org.firstinspires.ftc.teamcode.Robot Controller app has been paused and then resumed (for example, when a user temporarily turns off the display of the org.firstinspires.ftc.teamcode.Robot Controller phone, and then turns the screen back on).
  * Introduced a fix to prevent random op mode stops, which were previously caused by random peer disconnect events on the Driver Station.
  * Fixes issue where log files would be closed on pause of the RC or DS, but not re-opened upon resume.
  * Fixes issue with battery handler (voltage) start/stop race.
  * Fixes issue where Android Studio generated op modes would disappear from available list in certain situations.
  * Fixes problem where OnBot Java would not build on REV Robotics Control Hub.
- * Fixes problem where OnBot Java would not build if the date and time on the Robot Controller device was "rewound" (set to an earlier date/time).
+ * Fixes problem where OnBot Java would not build if the date and time on the org.firstinspires.ftc.teamcode.Robot Controller device was "rewound" (set to an earlier date/time).
  * Improved error message on OnBot Java that occurs when renaming a file fails.
- * Removed unneeded resources from android.jar binaries used by OnBot Java to reduce final size of Robot Controller app.
+ * Removed unneeded resources from android.jar binaries used by OnBot Java to reduce final size of org.firstinspires.ftc.teamcode.Robot Controller app.
  * Added MR_ANALOG_TOUCH_SENSOR block to Blocks Programming Tool.
 
 **************************************************************************************
@@ -253,7 +253,7 @@ This version of the software includes improves for the FTC Blocks Programming To
 Changes with verion 3.3 include:
  * Android Studio ftc_app project has been updated to use Gradle Plugin 2.3.3.
  * Android Studio ftc_app project is already using gradle 3.5 distribution.
- * Robot Controller log has been renamed to /sdcard/RobotControllerLog.txt (note that this change was actually introduced w/ v3.2).
+ * org.firstinspires.ftc.teamcode.Robot Controller log has been renamed to /sdcard/RobotControllerLog.txt (note that this change was actually introduced w/ v3.2).
  * Improvements in I2C reliability.
  * Optimized I2C read for REV Expansion Hub, with v1.7 firmware or greater.
  * Updated all external/samples (available through OnBot and in Android project folder).
@@ -284,7 +284,7 @@ Version 3.2 (built on 17.08.02)
 
 This version of the software introduces the "OnBot Java" Development Tool.  Similar to the FTC Blocks Development Tool, the FTC OnBot Java Development Tool allows a user to create, edit and build op modes dynamically using only a Javascript-enabled web browser.
 
-The OnBot Java Development Tool is an integrated development environment (IDE) that is served up by the Robot Controller.  Op modes are created and edited using a Javascript-enabled browser (Google Chromse is recommended).  Op modes are saved on the Robot Controller Android device directly.  
+The OnBot Java Development Tool is an integrated development environment (IDE) that is served up by the org.firstinspires.ftc.teamcode.Robot Controller.  Op modes are created and edited using a Javascript-enabled browser (Google Chromse is recommended).  Op modes are saved on the org.firstinspires.ftc.teamcode.Robot Controller Android device directly.
 
 The OnBot Java Development Tool provides a Java programming environment that does NOT need Android Studio.
 
@@ -293,8 +293,8 @@ The OnBot Java Development Tool provides a Java programming environment that doe
 Changes with version 3.2 include:
  * Enhanced web-based development tools
     - Introduction of OnBot Java Development Tool.
-    - Web-based programming and management features are "always on" (user no longer needs to put Robot Controller into programming mode).
-    - Web-based management interface (where user can change Robot Controller name and also easily download Robot Controller log file).
+    - Web-based programming and management features are "always on" (user no longer needs to put org.firstinspires.ftc.teamcode.Robot Controller into programming mode).
+    - Web-based management interface (where user can change org.firstinspires.ftc.teamcode.Robot Controller name and also easily download org.firstinspires.ftc.teamcode.Robot Controller log file).
     - OnBot Java, Blocks and Management features available from web based interface.
 
 * Blocks Programming Development Tool:
@@ -320,7 +320,7 @@ Known issues:
 
 Version 3.10 (built on 17.05.09)
 
-This version of the software provides support for the REV Robotics Expansion Hub.  This version also includes improvements in the USB communication layer in an effort to enhance system resiliency.  If you were using a 2.x version of the software previously, updating to version 3.1 requires that you also update your Driver Station software in addition to updating the Robot Controller software.
+This version of the software provides support for the REV Robotics Expansion Hub.  This version also includes improvements in the USB communication layer in an effort to enhance system resiliency.  If you were using a 2.x version of the software previously, updating to version 3.1 requires that you also update your Driver Station software in addition to updating the org.firstinspires.ftc.teamcode.Robot Controller software.
 
 Also note that in version 3.10 software, the setMaxSpeed and getMaxSpeed methods are no longer available (not deprecated, they have been removed from the SDK). Also note that the the new 3.x software incorporates motor profiles that a user can select as he/she configures the robot.
 
@@ -338,7 +338,7 @@ Additional Notes Regarding Version 3.00 (built on 17.04.13)
 
 In addition to the release changes listed below (see section labeled "Version 3.00 (built on 17.04.013)"), version 3.00 has the following important changes:
 
-1. Version 3.00 software uses a new version of the FTC Robocol (robot protocol).  If you upgrade to v3.0 on the Robot Controller and/or Android Studio side, you must also upgrade the Driver Station software to match the new Robocol.
+1. Version 3.00 software uses a new version of the FTC Robocol (robot protocol).  If you upgrade to v3.0 on the org.firstinspires.ftc.teamcode.Robot Controller and/or Android Studio side, you must also upgrade the Driver Station software to match the new Robocol.
 2. Version 3.00 software removes the setMaxSpeed and getMaxSpeed methods from the DcMotor class.  If you have an op mode that formerly used these methods, you will need to remove the references/calls to these methods.  Instead, v3.0 provides the max speed information through the use of motor profiles that are selected by the user during robot configuration.
 3. Version 3.00 software currently does not have a mechanism to disable extra i2c sensors.  We hope to re-introduce this function with a release in the near future.
 
@@ -482,7 +482,7 @@ Version 2.4 (released on 16.11.13)
   * Incorporated suggested changes from public pull 216 (“Replace .. paths”).
   * Remove Servo Glitches when robot stopped.
   * if user hits “Cancels” when editing a configuration file, clears the unsaved changes and reverts to original unmodified configuration.
-  * Added log info to help diagnose why the Robot Controller app was terminated (for example, by watch dog function).
+  * Added log info to help diagnose why the org.firstinspires.ftc.teamcode.Robot Controller app was terminated (for example, by watch dog function).
   * Added ability to transfer log from the controller.
   * Fixed inconsistency for AngularVelocity
   * Limit unbounded growth of data for telemetry.  If user does not call telemetry.update() for LinearOpMode in a timely manner, data added for telemetry might get lost if size limit is exceeded.
@@ -559,7 +559,7 @@ Version 2.10 (released on 16.09.03)
 
 Version 2.00 (released on 16.08.19)
  * This is the new release for the upcoming 2016-2017 FIRST Tech Challenge Season.
- * Channel change is enabled in the FTC Robot Controller app for Moto G 2nd and 3rd Gen phones.
+ * Channel change is enabled in the FTC org.firstinspires.ftc.teamcode.Robot Controller app for Moto G 2nd and 3rd Gen phones.
  * Users can now use annotations to register/disable their Op Modes.
  * Changes in the Android SDK, JDK and build tool requirements (minsdk=19, java 1.7, build tools 23.0.3).
  * Standardized units in analog input.
@@ -570,18 +570,18 @@ Version 2.00 (released on 16.08.19)
  * Range.clip() method has been overloaded so it can support this operation for int, short and byte integers.
  * Some changes have been made (new methods added) on how a user can access items from the hardware map.
  * Users can now set the zero power behavior for a DC motor so that the motor will brake or float when power is zero.
- * Prototype Blockly Programming Mode has been added to FTC Robot Controller.  Users can place the Robot Controller into this mode, and then use a device (such as a laptop) that has a Javascript enabled browser to write Blockly-based Op Modes directly onto the Robot Controller.
+ * Prototype Blockly Programming Mode has been added to FTC org.firstinspires.ftc.teamcode.Robot Controller.  Users can place the org.firstinspires.ftc.teamcode.Robot Controller into this mode, and then use a device (such as a laptop) that has a Javascript enabled browser to write Blockly-based Op Modes directly onto the org.firstinspires.ftc.teamcode.Robot Controller.
  * Users can now configure the robot remotely through the FTC Driver Station app.
  * Android Studio project supports Android Studio 2.1.x and compile SDK Version 23 (Marshmallow).
  * Vuforia Computer Vision SDK integrated into FTC SDK.  Users can use sample vision targets to get localization information on a standard FTC field.
  * Project structure has been reorganized so that there is now a TeamCode package that users can use to place their local/custom Op Modes into this package.
- * Inspection function has been integrated into the FTC Robot Controller and Driver Station Apps (Thanks Team HazMat… 9277 & 10650!).
+ * Inspection function has been integrated into the FTC org.firstinspires.ftc.teamcode.Robot Controller and Driver Station Apps (Thanks Team HazMat… 9277 & 10650!).
  * Audio cues have been incorporated into FTC SDK.
- * Swap mechanism added to FTC Robot Controller configuration activity.  For example, if you have two motor controllers on a robot, and you misidentified them in your configuration file, you can use the Swap button to swap the devices within the configuration file (so you do not have to manually re-enter in the configuration info for the two devices).
+ * Swap mechanism added to FTC org.firstinspires.ftc.teamcode.Robot Controller configuration activity.  For example, if you have two motor controllers on a robot, and you misidentified them in your configuration file, you can use the Swap button to swap the devices within the configuration file (so you do not have to manually re-enter in the configuration info for the two devices).
  * Fix mechanism added to all user to replace an electronic module easily.  For example, suppose a servo controller dies on your robot. You replace the broken module with a new module, which has a different serial number from the original servo controller.  You can use the Fix button to automatically reconfigure your configuration file to use the serial number of the new module.
  * Improvements made to fix resiliency and responsiveness of the system.
  * For LinearOpMode the user now must for a telemetry.update() to update the telemetry data on the driver station.  This update() mechanism ensures that the driver station gets the updated data properly and at the same time.
- * The Auto Configure function of the Robot Controller is now template based.  If there is a commonly used robot configuration, a template can be created so that the Auto Configure mechanism can be used to quickly configure a robot of this type.
+ * The Auto Configure function of the org.firstinspires.ftc.teamcode.Robot Controller is now template based.  If there is a commonly used robot configuration, a template can be created so that the Auto Configure mechanism can be used to quickly configure a robot of this type.
  * The logic to detect a runaway op mode (both in the LinearOpMode and OpMode types) and to abort the run, then auto recover has been improved/implemented.
  * Fix has been incorporated so that Logitech F310 gamepad mappings will be correct for Marshmallow users.
 
@@ -641,7 +641,7 @@ Release 16.03.09
 Release 16.02.09
 
  * Improved battery checker feature so that voltage values get refreshed regularly (every 250 msec) on Driver Station (DS) user interface.
- * Improved software so that Robot Controller (RC) is much more resilient and “self-healing” to USB disconnects:
+ * Improved software so that org.firstinspires.ftc.teamcode.Robot Controller (RC) is much more resilient and “self-healing” to USB disconnects:
     - If user attempts to start/restart RC with one or more module missing, it will display a warning but still start up.
     - When running an op mode, if one or more modules gets disconnected, the RC & DS will display warnings,and robot will keep on working in spite of the missing module(s).
     - If a disconnected module gets physically reconnected the RC will auto detect the module and the user will regain control of the recently connected module.
@@ -649,7 +649,7 @@ Release 16.02.09
  * Code changes to fix the null gamepad reference when users try to reference the gamepads in the init() portion of their op mode.
  * NXT light sensor output is now properly scaled.  Note that teams might have to readjust their light threshold values in their op modes.
  * On DS user interface, gamepad icon for a driver will disappear if the matching gamepad is disconnected or if that gamepad gets designated as a different driver.
- * Robot Protocol (ROBOCOL) version number info is displayed in About screen on RC and DS apps.
+ * org.firstinspires.ftc.teamcode.Robot Protocol (ROBOCOL) version number info is displayed in About screen on RC and DS apps.
  * Incorporated a display filter on pairing screen to filter out devices that don’t use the “<TEAM NUMBER>-“ format. This filter can be turned off to show all WiFi Direct devices.
  * Updated text in License file.
  * Fixed formatting error in OpticalDistanceSensor.toString().
@@ -730,7 +730,7 @@ Release 15.11.04.001
   - Added HTRGBExample.java op mode (demonstrates how to use HT legacy color sensor).
   - Added MatrixControllerDemo.java (demonstrates how to use legacy Matrix controller).
  * Updated javadoc documentation.
- * Updated release .apk files for Robot Controller and Driver Station apps.
+ * Updated release .apk files for org.firstinspires.ftc.teamcode.Robot Controller and Driver Station apps.
 
 T. Eng
 November 5, 2015
@@ -751,7 +751,7 @@ October 6, 2015
 
 In this latest version of the FTC SDK (20150803_001) the following changes should be noted:
 
- * New user interfaces for FTC Driver Station and FTC Robot Controller apps.
+ * New user interfaces for FTC Driver Station and FTC org.firstinspires.ftc.teamcode.Robot Controller apps.
  * An init() method is added to the OpMode class.
    - For this release, init() is triggered right before the start() method.
    - Eventually, the init() method will be triggered when the user presses an "INIT" button on driver station.
