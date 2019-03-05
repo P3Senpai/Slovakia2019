@@ -51,29 +51,34 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 @TeleOp(name="Basic: Linear OpMode", group="Linear Opmode")
-@Disabled
+//@Disabled
 public class OpMode_linear extends LinearOpMode {
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
-
+    private Robot robot = new Robot();
 
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-
+        robot.init(hardwareMap);
 
         waitForStart();
         runtime.reset();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+            double leftPower = Range.clip(gamepad1.left_stick_y,-1.0,1.0);
+            double rightPower = Range.clip(gamepad1.right_stick_y, -1.0 ,1.0);
 
+            robot.leftDrive.setPower(leftPower);
+            robot.rightDrive.setPower(rightPower);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Driving", "left: (%.2f) right (%.2f)",leftPower,rightPower);
             telemetry.update();
         }
     }
