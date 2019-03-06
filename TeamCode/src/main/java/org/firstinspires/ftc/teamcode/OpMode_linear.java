@@ -69,17 +69,40 @@ public class OpMode_linear extends LinearOpMode {
         runtime.reset();
 
         // run until the end of the match (driver presses STOP)
-        while (opModeIsActive()) {
-            double leftPower = Range.clip(gamepad1.left_stick_y,-1.0,1.0);
-            double rightPower = Range.clip(gamepad1.right_stick_y, -1.0 ,1.0);
-
+        while(true) {
+            double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
+            double rightPower = Range.clip(gamepad1.right_stick_y, -1.0, 1.0);
             robot.leftDrive.setPower(leftPower);
             robot.rightDrive.setPower(rightPower);
 
+            if (gamepad1.dpad_up){
+                double speed = 0.5;
+                robot.leftIn.setPower(speed);
+                robot.rightIn.setPower(speed);
+                robot.leftBelt.setPower(speed);
+                robot.rightBelt.setPower(speed);
+            }else if(gamepad1.dpad_down){
+                double speed = -0.5;
+                robot.leftIn.setPower(speed);
+                robot.rightIn.setPower(speed);
+                robot.leftBelt.setPower(speed);
+                robot.rightBelt.setPower(speed);
+            }else{
+                double speed = 0.0;
+                robot.leftIn.setPower(speed);
+                robot.rightIn.setPower(speed);
+                robot.leftBelt.setPower(speed);
+                robot.rightBelt.setPower(speed);
+            }
+
+
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Driving", "left: (%.2f) right (%.2f)",leftPower,rightPower);
+            telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
             telemetry.update();
+            if(!opModeIsActive()){
+                break;
+            }
         }
     }
 }

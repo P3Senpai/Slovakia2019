@@ -81,8 +81,8 @@ public class Robot
         leftBelt   = hwMap.get(DcMotor.class, "left_belt");
         rightBelt  = hwMap.get(DcMotor.class, "right_belt");
 
-        leftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        rightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        leftDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightDrive.setDirection(DcMotor.Direction.REVERSE);
 
         leftIn.setDirection(DcMotorSimple.Direction.FORWARD);
         rightIn.setDirection(DcMotorSimple.Direction.REVERSE);
