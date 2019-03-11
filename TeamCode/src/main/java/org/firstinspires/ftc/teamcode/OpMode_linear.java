@@ -95,6 +95,15 @@ public class OpMode_linear extends LinearOpMode {
                 robot.rightBelt.setPower(speed);
             }
 
+            //sets the power of motors using x and y values from one stick to simplify driving
+            double y = gamepad1.left_stick_y;
+            double x = gamepad1.left_stick_x;
+            //addition an subtraction slows down one motor based on the x value to make the turn
+            leftPower    = Range.clip(y - x, -1.0, 1.0) ;
+            rightPower   = Range.clip(y + x, -1.0, 1.0) ;
+            robot.leftDrive.setPower(leftPower);
+            robot.rightDrive.setPower(rightPower);
+
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

@@ -103,6 +103,11 @@ public class Robot
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftBelt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightBelt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
     }
  }
