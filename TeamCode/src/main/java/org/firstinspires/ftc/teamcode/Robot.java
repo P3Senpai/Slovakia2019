@@ -93,6 +93,10 @@ public class Robot
         // Set all motors to zero power
         leftDrive.setPower(0);
         rightDrive.setPower(0);
+        leftBelt.setPower(0);
+        rightBelt.setPower(0);
+        leftIn.setPower(0);
+        rightIn.setPower(0);
 
 
         // Set all motors to run without encoders.
