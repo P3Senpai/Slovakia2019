@@ -58,6 +58,8 @@ public class Robot
     protected DcMotor  rightIn     = null;
     protected DcMotor  leftBelt    = null;
     protected DcMotor  rightBelt   = null;
+    protected DcMotor  leftLift    = null;
+    protected DcMotor  rightLift   = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -80,6 +82,8 @@ public class Robot
         rightIn    = hwMap.get(DcMotor.class, "right_in");
         leftBelt   = hwMap.get(DcMotor.class, "left_belt");
         rightBelt  = hwMap.get(DcMotor.class, "right_belt");
+        leftLift   = hwMap.get(DcMotor.class, "leftLift");
+        rightLift  = hwMap.get(DcMotor.class, "rightLift");
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -90,6 +94,9 @@ public class Robot
         leftBelt.setDirection(DcMotorSimple.Direction.FORWARD);
         rightBelt.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        leftLift.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightLift.setDirection(DcMotorSimple.Direction.REVERSE);
+
         // Set all motors to zero power
         leftDrive.setPower(0);
         rightDrive.setPower(0);
@@ -97,16 +104,23 @@ public class Robot
         rightBelt.setPower(0);
         leftIn.setPower(0);
         rightIn.setPower(0);
+        rightLift.setPower(0);
+        leftLift.setPower(0);
 
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         leftBelt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBelt.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         leftIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        rightLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
     }

@@ -70,10 +70,14 @@ public class OpMode_linear extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while(true) {
-            double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
+
+            // region Petr
+
+            //comented out to avoif competing methods of setting the motot powers
+            /*double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
             double rightPower = Range.clip(gamepad1.right_stick_y, -1.0, 1.0);
             robot.leftDrive.setPower(leftPower);
-            robot.rightDrive.setPower(rightPower);
+            robot.rightDrive.setPower(rightPower);*/
 
             if (gamepad1.dpad_up){
                 double speed = 0.5;
@@ -95,14 +99,29 @@ public class OpMode_linear extends LinearOpMode {
                 robot.rightBelt.setPower(speed);
             }
 
-            //sets the power of motors using x and y values from one stick to simplify driving
-            double y = gamepad1.left_stick_y;
+            //endregion
+
+            //region Michael
+
+
+            // sets the power of motors using x and y values from one stick to simplify driving
+            double y = - gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
-            //addition an subtraction slows down one motor based on the x value to make the turn
-            leftPower    = Range.clip(y - x, -1.0, 1.0) ;
-            rightPower   = Range.clip(y + x, -1.0, 1.0) ;
+
+            // addition an subtraction slows down one motor based on the x value to make the turn
+            double leftPower    = Range.clip(y - x, -1.0, 1.0) ;
+            double rightPower   = Range.clip(y + x, -1.0, 1.0) ;
+
+            // sets the power of the drive motors
             robot.leftDrive.setPower(leftPower);
             robot.rightDrive.setPower(rightPower);
+
+            //s sets the power of the lift motors based on the second joy stick
+            robot.rightLift.setPower(-gamepad1.right_stick_y);
+            robot.leftLift.setPower(-gamepad1.right_stick_y);
+
+
+            //endregion
 
 
             // Show the elapsed game time and wheel power.
