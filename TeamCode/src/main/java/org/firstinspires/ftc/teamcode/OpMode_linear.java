@@ -33,8 +33,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
 /**
@@ -75,35 +78,69 @@ public class OpMode_linear extends LinearOpMode {
 
             // region Petr
 
-            //comented out to avoif competing methods of setting the motot powers
+            //comented out to avoid competing methods of setting the motot powers
             /*double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
             double rightPower = Range.clip(gamepad1.right_stick_y, -1.0, 1.0);
             robot.leftDrive.setPower(leftPower);
             robot.rightDrive.setPower(rightPower);*/
 
-            if (gamepad1.dpad_up){
-                double speed = 0.5;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
+            if(gamepad1.dpad_up)
+            {
+                double speed  = 0.5;
                 robot.leftBelt.setPower(speed);
+                robot.rightIn.setPower(speed);
                 robot.rightBelt.setPower(speed);
+                robot.leftIn.setPower(speed);
             }else if(gamepad1.dpad_down){
-                double speed = -0.5;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
+                double speed  = -0.5;
                 robot.leftBelt.setPower(speed);
+                robot.rightIn.setPower(speed);
                 robot.rightBelt.setPower(speed);
+                robot.leftIn.setPower(speed);
             }else{
-                double speed = 0.0;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
+                double speed  = 0.0;
                 robot.leftBelt.setPower(speed);
+                robot.rightIn.setPower(speed);
                 robot.rightBelt.setPower(speed);
+                robot.leftIn.setPower(speed);
             }
+
+
+
+
+
+
+
+
 
             //endregion
 
             //region Michael
+
+
+
+            // accounts for tilt
+            /*if (gamepad1.dpad_up) {
+                distanceToSpeed(robot.distanceSensor1.getDistance(DistanceUnit.CM), robot.distanceSensor2.getDistance(DistanceUnit.CM));
+            }
+            // spits blocks back out
+            else if (gamepad1.dpad_up)
+            {
+                robot.leftIn.setPower(-0.5);
+                robot.rightIn.setPower(-0.5);
+                robot.rightBelt.setPower(-0.5);
+                robot.leftBelt.setPower(-0.5);
+            }
+            //resets the values to zero when the button is not pressed
+            else
+            {
+                robot.leftIn.setPower(0);
+                robot.rightIn.setPower(0);
+                robot.rightBelt.setPower(0);
+                robot.leftBelt.setPower(0);
+
+            }
+            */
 
 
             // sets the power of motors using x and y values from one stick to simplify driving
@@ -115,12 +152,29 @@ public class OpMode_linear extends LinearOpMode {
             double rightPower   = Range.clip(y + x, -1.0, 1.0) ;
 
             // sets the power of the drive motors
-            robot.leftDrive.setPower(leftPower);
-            robot.rightDrive.setPower(rightPower);
+            robot.leftDrive.setPower(-leftPower);
+            robot.rightDrive.setPower(-rightPower);
 
             //s sets the power of the lift motors based on the second joy stick
             robot.rightLift.setPower(-gamepad1.right_stick_y);
             robot.leftLift.setPower(-gamepad1.right_stick_y);
+
+            /*if(!robot.touchSensor.getState())
+            {
+                double speed = 0.5;
+                robot.rightBelt.setPower(speed);
+                robot.leftBelt.setPower(speed);
+
+            }
+            else
+            {
+                double speed = 0;
+                robot.rightBelt.setPower(speed);
+                robot.leftBelt.setPower(speed);
+            }*/
+
+
+
 
 
             //endregion
@@ -129,11 +183,54 @@ public class OpMode_linear extends LinearOpMode {
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
+<<<<<<< HEAD
             telemetry.addData("Loop count", loopCount);
+=======
+            //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
+            //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
+>>>>>>> df954687895e107f715ad326047557e4d532946a
             telemetry.update();
             if(!opModeIsActive()){
                 break;
             }
         }
     }
+    public void distanceToSpeed(double distance1, double distance2)
+    {
+
+
+
+
+                //checks if the block is tilted so that the left side is further away and then accelerates that side.
+                // The change in values is temporary
+                // the added 3 is meant to have this only run at a certain margin of error
+                if (distance1 > distance2 + 0.5) {
+                    double speed = 0.5;
+                    robot.leftIn.setPower(speed + 0.1);
+                    robot.rightIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+                //does the same as above but checks the right
+                else if (distance2 > distance1 + 0.5) {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed + 0.1);
+                    robot.leftIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                } else {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed);
+                    robot.leftIn.setPower(speed);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+
+
+
+
+
+
+    }
 }
+
