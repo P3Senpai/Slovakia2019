@@ -33,8 +33,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
 /**
@@ -73,31 +76,15 @@ public class OpMode_linear extends LinearOpMode {
 
             // region Petr
 
-            //comented out to avoif competing methods of setting the motot powers
+            //comented out to avoid competing methods of setting the motot powers
             /*double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
             double rightPower = Range.clip(gamepad1.right_stick_y, -1.0, 1.0);
             robot.leftDrive.setPower(leftPower);
             robot.rightDrive.setPower(rightPower);*/
 
-            if (gamepad1.dpad_up){
-                double speed = 0.5;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
-                robot.leftBelt.setPower(speed);
-                robot.rightBelt.setPower(speed);
-            }else if(gamepad1.dpad_down){
-                double speed = -0.5;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
-                robot.leftBelt.setPower(speed);
-                robot.rightBelt.setPower(speed);
-            }else{
-                double speed = 0.0;
-                robot.leftIn.setPower(speed);
-                robot.rightIn.setPower(speed);
-                robot.leftBelt.setPower(speed);
-                robot.rightBelt.setPower(speed);
-            }
+
+
+
 
             //endregion
 
@@ -121,12 +108,64 @@ public class OpMode_linear extends LinearOpMode {
             robot.leftLift.setPower(-gamepad1.right_stick_y);
 
 
+            /*
+            if (gamepad1.dpad_up) {
+
+
+                //checks if the block is tilted so that the left side is further away and then accelerates that side.
+                // The change in values is temporary
+                // the added 3 is meant to have this only run at a certain margin of error
+                if (robot.distanceSensor1.getDistance(DistanceUnit.CM) > robot.distanceSensor2.getDistance(DistanceUnit.CM) + 3) {
+                    double speed = 0.5;
+                    robot.leftIn.setPower(speed + 0.1);
+                    robot.rightIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+                //does the same as above but checks the right
+                else if (robot.distanceSensor2.getDistance(DistanceUnit.CM) > robot.distanceSensor2.getDistance(DistanceUnit.CM) + 3) {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed + 0.1);
+                    robot.leftIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                } else {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed);
+                    robot.leftIn.setPower(speed);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+            }
+            else if (gamepad1.dpad_up)
+            {
+                robot.leftIn.setPower(-0.5);
+                robot.rightIn.setPower(-0.5);
+                robot.rightBelt.setPower(-0.5);
+                robot.leftBelt.setPower(-0.5);
+            }
+            else
+            {
+                robot.leftIn.setPower(0);
+                robot.rightIn.setPower(0);
+                robot.rightBelt.setPower(0);
+                robot.leftBelt.setPower(0);
+
+            }
+
+
+
+
+            */
+
             //endregion
 
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
+            telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
+            telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
             telemetry.update();
             if(!opModeIsActive()){
                 break;

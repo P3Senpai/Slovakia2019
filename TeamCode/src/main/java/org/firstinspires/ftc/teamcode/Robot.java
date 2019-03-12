@@ -29,7 +29,9 @@ package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights r
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -60,13 +62,16 @@ public class Robot
     protected DcMotor  rightBelt   = null;
     protected DcMotor  leftLift    = null;
     protected DcMotor  rightLift   = null;
+    protected DistanceSensor distanceSensor1;
+    protected DistanceSensor distanceSensor2;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
-    public Robot(){
+    public Robot()
+    {
 
     }
 
@@ -84,6 +89,10 @@ public class Robot
         rightBelt  = hwMap.get(DcMotor.class, "right_belt");
         leftLift   = hwMap.get(DcMotor.class, "leftLift");
         rightLift  = hwMap.get(DcMotor.class, "rightLift");
+
+        //Define and initialize sensors
+        distanceSensor1 = hwMap.get(DistanceSensor.class, "distanceSensor1");
+        distanceSensor2 = hwMap.get(DistanceSensor.class, "distanceSensor2")
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
