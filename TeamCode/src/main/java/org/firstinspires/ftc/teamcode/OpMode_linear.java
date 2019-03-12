@@ -86,9 +86,38 @@ public class OpMode_linear extends LinearOpMode {
 
 
 
+
+
+
+
+
+
             //endregion
 
             //region Michael
+
+
+            // accounts for tilt
+            if (gamepad1.dpad_up) {
+                distanceToSpeed(robot.distanceSensor1.getDistance(DistanceUnit.CM), robot.distanceSensor2.getDistance(DistanceUnit.CM));
+            }
+            // spits blocks back out
+            else if (gamepad1.dpad_up)
+            {
+                robot.leftIn.setPower(-0.5);
+                robot.rightIn.setPower(-0.5);
+                robot.rightBelt.setPower(-0.5);
+                robot.leftBelt.setPower(-0.5);
+            }
+            //resets the values to zero when the button is not pressed
+            else
+            {
+                robot.leftIn.setPower(0);
+                robot.rightIn.setPower(0);
+                robot.rightBelt.setPower(0);
+                robot.leftBelt.setPower(0);
+
+            }
 
 
             // sets the power of motors using x and y values from one stick to simplify driving
@@ -108,55 +137,7 @@ public class OpMode_linear extends LinearOpMode {
             robot.leftLift.setPower(-gamepad1.right_stick_y);
 
 
-            /*
-            if (gamepad1.dpad_up) {
 
-
-                //checks if the block is tilted so that the left side is further away and then accelerates that side.
-                // The change in values is temporary
-                // the added 3 is meant to have this only run at a certain margin of error
-                if (robot.distanceSensor1.getDistance(DistanceUnit.CM) > robot.distanceSensor2.getDistance(DistanceUnit.CM) + 3) {
-                    double speed = 0.5;
-                    robot.leftIn.setPower(speed + 0.1);
-                    robot.rightIn.setPower(speed - 0.1);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
-                }
-                //does the same as above but checks the right
-                else if (robot.distanceSensor2.getDistance(DistanceUnit.CM) > robot.distanceSensor2.getDistance(DistanceUnit.CM) + 3) {
-                    double speed = 0.5;
-                    robot.rightIn.setPower(speed + 0.1);
-                    robot.leftIn.setPower(speed - 0.1);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
-                } else {
-                    double speed = 0.5;
-                    robot.rightIn.setPower(speed);
-                    robot.leftIn.setPower(speed);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
-                }
-            }
-            else if (gamepad1.dpad_up)
-            {
-                robot.leftIn.setPower(-0.5);
-                robot.rightIn.setPower(-0.5);
-                robot.rightBelt.setPower(-0.5);
-                robot.leftBelt.setPower(-0.5);
-            }
-            else
-            {
-                robot.leftIn.setPower(0);
-                robot.rightIn.setPower(0);
-                robot.rightBelt.setPower(0);
-                robot.leftBelt.setPower(0);
-
-            }
-
-
-
-
-            */
 
             //endregion
 
@@ -172,4 +153,42 @@ public class OpMode_linear extends LinearOpMode {
             }
         }
     }
+    public void distanceToSpeed(double distance1, double distance2)
+    {
+
+
+
+
+                //checks if the block is tilted so that the left side is further away and then accelerates that side.
+                // The change in values is temporary
+                // the added 3 is meant to have this only run at a certain margin of error
+                if (distance1 > distance2 + 0.5) {
+                    double speed = 0.5;
+                    robot.leftIn.setPower(speed + 0.1);
+                    robot.rightIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+                //does the same as above but checks the right
+                else if (distance2 > distance1 + 0.5) {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed + 0.1);
+                    robot.leftIn.setPower(speed - 0.1);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                } else {
+                    double speed = 0.5;
+                    robot.rightIn.setPower(speed);
+                    robot.leftIn.setPower(speed);
+                    robot.leftBelt.setPower(speed);
+                    robot.rightBelt.setPower(speed);
+                }
+
+
+
+
+
+
+    }
 }
+

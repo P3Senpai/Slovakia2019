@@ -87,12 +87,12 @@ public class Robot
         rightIn    = hwMap.get(DcMotor.class, "right_in");
         leftBelt   = hwMap.get(DcMotor.class, "left_belt");
         rightBelt  = hwMap.get(DcMotor.class, "right_belt");
-        leftLift   = hwMap.get(DcMotor.class, "leftLift");
-        rightLift  = hwMap.get(DcMotor.class, "rightLift");
+        leftLift   = hwMap.get(DcMotor.class, "left_lift");
+        rightLift  = hwMap.get(DcMotor.class, "right_lift");
 
         //Define and initialize sensors
         distanceSensor1 = hwMap.get(DistanceSensor.class, "distanceSensor1");
-        distanceSensor2 = hwMap.get(DistanceSensor.class, "distanceSensor2")
+        distanceSensor2 = hwMap.get(DistanceSensor.class, "distanceSensor2");
 
         leftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightDrive.setDirection(DcMotor.Direction.REVERSE);
