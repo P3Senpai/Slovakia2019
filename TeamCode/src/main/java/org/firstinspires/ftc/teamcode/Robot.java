@@ -103,8 +103,8 @@ public class Robot
         leftIn.setDirection(DcMotorSimple.Direction.FORWARD);
         rightIn.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        leftBelt.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightBelt.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftBelt.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightBelt.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftLift.setDirection(DcMotorSimple.Direction.FORWARD);
         rightLift.setDirection(DcMotorSimple.Direction.REVERSE);

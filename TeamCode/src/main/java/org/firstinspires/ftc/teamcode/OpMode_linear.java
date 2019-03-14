@@ -63,6 +63,7 @@ public class OpMode_linear extends LinearOpMode {
 
     @Override
     public void runOpMode() {
+        boolean isUp = false;
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -84,16 +85,16 @@ public class OpMode_linear extends LinearOpMode {
 
             if(gamepad1.dpad_up)
             {
-                double speed  = 0.5;
-                robot.leftBelt.setPower(speed);
+                double speed  = -0.5;
+                robot.leftBelt.setPower(-speed);
                 robot.rightIn.setPower(speed);
-                robot.rightBelt.setPower(speed);
+                robot.rightBelt.setPower(-speed);
                 robot.leftIn.setPower(speed);
             }else if(gamepad1.dpad_down){
-                double speed  = -0.5;
-                robot.leftBelt.setPower(speed);
+                double speed  = 0.5;
+                robot.leftBelt.setPower(-speed);
                 robot.rightIn.setPower(speed);
-                robot.rightBelt.setPower(speed);
+                robot.rightBelt.setPower(-speed);
                 robot.leftIn.setPower(speed);
             }else{
                 double speed  = 0.0;
@@ -116,9 +117,9 @@ public class OpMode_linear extends LinearOpMode {
             //region Michael
 
 
-
+            /*
             // accounts for tilt
-            /*if (gamepad1.dpad_up) {
+            if (gamepad1.dpad_up) {
                 distanceToSpeed(robot.distanceSensor1.getDistance(DistanceUnit.CM), robot.distanceSensor2.getDistance(DistanceUnit.CM));
             }
             // spits blocks back out
@@ -139,6 +140,7 @@ public class OpMode_linear extends LinearOpMode {
 
             }
             */
+
 
 
             // sets the power of motors using x and y values from one stick to simplify driving
