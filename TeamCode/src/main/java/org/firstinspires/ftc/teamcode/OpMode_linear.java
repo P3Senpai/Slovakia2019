@@ -60,6 +60,7 @@ public class OpMode_linear extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private Robot robot = new Robot();
+    private int loopCount = 0; // this var is created in order to count the number of loops in a second
 
     @Override
     public void runOpMode() {
@@ -72,8 +73,9 @@ public class OpMode_linear extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
-        // run until the end of the match (driver presses STOP)
+        // run until the end of the match (driver presses STOP
         while(true) {
+            loopCount++;
 
             // region Petr
 
@@ -183,8 +185,12 @@ public class OpMode_linear extends LinearOpMode {
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
+<<<<<<< HEAD
+            telemetry.addData("Loop count", loopCount);
+=======
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
+>>>>>>> df954687895e107f715ad326047557e4d532946a
             telemetry.update();
             if(!opModeIsActive()){
                 break;
