@@ -185,12 +185,9 @@ public class OpMode_linear extends LinearOpMode {
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
-<<<<<<< HEAD
             telemetry.addData("Loop count", loopCount);
-=======
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
->>>>>>> df954687895e107f715ad326047557e4d532946a
             telemetry.update();
             if(!opModeIsActive()){
                 break;

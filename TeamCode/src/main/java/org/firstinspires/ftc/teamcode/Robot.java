@@ -131,8 +131,8 @@ public class Robot
         leftIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightIn.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        rightLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftLift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftLift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
     }
