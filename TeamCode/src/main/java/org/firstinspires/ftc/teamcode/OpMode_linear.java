@@ -143,10 +143,10 @@ public class OpMode_linear extends LinearOpMode {
             robot.rightDrive.setPower(-rightPower);
 
             //s sets the power of the lift motors based on the second joy stick
-            robot.rightLift.setPower(-gamepad1.right_stick_y);
-            robot.leftLift.setPower(-gamepad1.right_stick_y);
+            robot.rightLift.setPower(Range.clip(-gamepad1.right_stick_y, -0.5, 1.0));
+            robot.leftLift.setPower(Range.clip(-gamepad1.right_stick_y, -0.5, 1.0));
 
-            /*if(!robot.touchSensor.getState())
+            /*if(!robot.touchSensor.geatState())
             {
                 double speed = 0.5;
                 robot.rightBelt.setPower(speed);
@@ -167,10 +167,6 @@ public class OpMode_linear extends LinearOpMode {
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
-<<<<<<< HEAD
-            telemetry.addData("Loop count", loopCount);
-=======
->>>>>>> d98d6bcf5ee60073e2a0ba7a16cff00b2c11f1af
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
             telemetry.update();
@@ -210,14 +206,14 @@ public class OpMode_linear extends LinearOpMode {
     }
 
     // should there be a manual override if something happens ???
-    private void engageBelt(double distanceL, double distanceR, boolean cubStorage){
+    private void engageBelt(double distanceL, double distanceR, boolean cubeStorage){
         ElapsedTime timeOut = new ElapsedTime();
         double runTime = 0; //todo find optimal amount of time to run belt
         double closeEnough = 0; //todo find the optimal distance to engage belt
         double beltSpeed = -0.5; // todo test different speeds effect
 
         timeOut.reset();
-        while(!cubStorage) {
+        while(!cubeStorage) {
             robot.leftBelt.setPower(beltSpeed);
             robot.rightBelt.setPower(beltSpeed);
 
