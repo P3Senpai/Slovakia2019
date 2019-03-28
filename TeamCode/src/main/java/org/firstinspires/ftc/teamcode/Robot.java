@@ -35,23 +35,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-/**
- * This is NOT an opmode.
- *
- * This class can be used to define all the specific hardware for a single robot.
- * In this case that robot is a Pushbot.
- * See PushbotTeleopTank_Iterative and others classes starting with "Pushbot" for usage examples.
- *
- * This hardware class assumes the following device names have been configured on the robot:
- * Note:  All names are lower case and some have single spaces between words.
- *
- * Motor channel:  Left  drive motor:        "left_drive"
- * Motor channel:  Right drive motor:        "right_drive"
- * Motor channel:  Manipulator drive motor:  "left_arm"
- * Servo channel:  Servo to open left claw:  "left_hand"
- * Servo channel:  Servo to open right claw: "right_hand"
- */
 public class Robot
 {
     /* Public OpMode members. */
@@ -66,6 +49,14 @@ public class Robot
     //protected DistanceSensor distanceSensor1;
     //protected DistanceSensor distanceSensor2;
     protected DigitalChannel touchSensor;
+    /* defined variables */
+    protected double targetHeight;      //todo find the height of the lift
+    private int encoderPerRotation = 560;
+    protected int maxLiftPosition = (int) (targetHeight*Math.PI/encoderPerRotation);
+    protected int minLiftPosition = 0;
+
+    protected int currentStorage = 0;
+    protected final int MAXSTORAGE = 3; // this is in all caps due to final key word conventions
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;

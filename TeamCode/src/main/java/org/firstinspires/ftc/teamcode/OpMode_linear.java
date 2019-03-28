@@ -60,7 +60,6 @@ public class OpMode_linear extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private Robot robot = new Robot();
-    private int loopCount = 0; // this var is created in order to count the number of loops in a second
 
     @Override
     public void runOpMode() {
@@ -75,16 +74,9 @@ public class OpMode_linear extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP
         while(true) {
-            loopCount++;
 
             // region Petr
-
-            //comented out to avoid competing methods of setting the motot powers
-            /*double leftPower = Range.clip(gamepad1.left_stick_y, -1.0, 1.0);
-            double rightPower = Range.clip(gamepad1.right_stick_y, -1.0, 1.0);
-            robot.leftDrive.setPower(leftPower);
-            robot.rightDrive.setPower(rightPower);*/
-
+            // manual control for the belt and intake system
             if(gamepad1.dpad_up)
             {
                 double speed  = -0.5;
@@ -105,13 +97,6 @@ public class OpMode_linear extends LinearOpMode {
                 robot.rightBelt.setPower(speed);
                 robot.leftIn.setPower(speed);
             }
-
-
-
-
-
-
-
 
 
             //endregion
@@ -176,16 +161,16 @@ public class OpMode_linear extends LinearOpMode {
             }*/
 
 
-
-
-
             //endregion
 
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Driving", "left: (%.2f) right (%.2f)", leftPower, rightPower);
+<<<<<<< HEAD
             telemetry.addData("Loop count", loopCount);
+=======
+>>>>>>> d98d6bcf5ee60073e2a0ba7a16cff00b2c11f1af
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor1.getDistance(DistanceUnit.CM)));
             //telemetry.addData("range", String.format("%.01f m", robot.distanceSensor2.getDistance(DistanceUnit.CM)));
             telemetry.update();
@@ -194,42 +179,55 @@ public class OpMode_linear extends LinearOpMode {
             }
         }
     }
+
     public void distanceToSpeed(double distance1, double distance2)
     {
-
-
-
 
                 //checks if the block is tilted so that the left side is further away and then accelerates that side.
                 // The change in values is temporary
                 // the added 3 is meant to have this only run at a certain margin of error
-                if (distance1 > distance2 + 0.5) {
+                if (distance1 > distance2 + 0.5) { //todo is it possible to map the distance into speed through range clip?
                     double speed = 0.5;
                     robot.leftIn.setPower(speed + 0.1);
                     robot.rightIn.setPower(speed - 0.1);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
+//                    robot.leftBelt.setPower(speed); // cube should be straightened by intake motors so belt motor changes are unnecessary
+//                    robot.rightBelt.setPower(speed);
                 }
                 //does the same as above but checks the right
                 else if (distance2 > distance1 + 0.5) {
                     double speed = 0.5;
                     robot.rightIn.setPower(speed + 0.1);
                     robot.leftIn.setPower(speed - 0.1);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
+//                    robot.leftBelt.setPower(speed);
+//                    robot.rightBelt.setPower(speed);
                 } else {
                     double speed = 0.5;
                     robot.rightIn.setPower(speed);
                     robot.leftIn.setPower(speed);
-                    robot.leftBelt.setPower(speed);
-                    robot.rightBelt.setPower(speed);
+//                    robot.leftBelt.setPower(speed);
+//                    robot.rightBelt.setPower(speed);
                 }
+    }
 
+    // should there be a manual override if something happens ???
+    private void engageBelt(double distanceL, double distanceR, boolean cubStorage){
+        ElapsedTime timeOut = new ElapsedTime();
+        double runTime = 0; //todo find optimal amount of time to run belt
+        double closeEnough = 0; //todo find the optimal distance to engage belt
+        double beltSpeed = -0.5; // todo test different speeds effect
 
+        timeOut.reset();
+        while(!cubStorage) {
+            robot.leftBelt.setPower(beltSpeed);
+            robot.rightBelt.setPower(beltSpeed);
 
-
-
-
+            if (distanceL > closeEnough &&
+                    distanceR > closeEnough &&
+                    timeOut.seconds() >= runTime) {
+                robot.currentStorage += 1;
+                break;
+            }
+        }
     }
 }
 
