@@ -64,14 +64,14 @@ public class OpMode_linear extends LinearOpMode {
     @Override
     public void runOpMode() {
         boolean isUp = false;
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
 
         robot.init(hardwareMap);
 
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+
         waitForStart();
         runtime.reset();
-
         // run until the end of the match (driver presses STOP
         while(true) {
 
@@ -223,6 +223,26 @@ public class OpMode_linear extends LinearOpMode {
                 robot.currentStorage += 1;
                 break;
             }
+        }
+    }
+    private void liftByEncoder(int leftPosition, int rightPosition, double timeOut, double speed){
+        ElapsedTime timer = new ElapsedTime();
+        speed = Math.abs(speed);
+        int leftCurrent = robot.leftLift.getCurrentPosition();
+        int rightCurrent = robot.rightLift.getCurrentPosition();
+        robot.leftLift.setTargetPosition(leftPosition);
+        robot.rightLift.setTargetPosition(rightPosition);
+
+        //start loop
+        robot.rightLift.setPower(speed);
+        robot.leftLift.setPower(speed);
+        timer.reset();
+        while (opModeIsActive() &&
+                timer.seconds() <= timeOut &&
+                robot.leftLift.isBusy() &&
+                robot.rightLift.isBusy()){
+            telemetry.addData("Current Position","left:(%d) right:(%d)",leftCurrent,rightCurrent);
+            telemetry.addData("Target Position", "left:(%d) right:(%d)",leftPosition, rightPosition);
         }
     }
 }
